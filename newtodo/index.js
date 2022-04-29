@@ -64,7 +64,7 @@ const addToArray=()=>{
     else
     {
     alert("You have entered an invalid email address!");
-    document.form1.text1.focus();
+
 
     }
 
@@ -76,7 +76,7 @@ const addToArray=()=>{
    else
    {
    alert("You have entered an invalid phone");
-   document.form1.text1.focus();
+
 
    }
     
@@ -126,7 +126,7 @@ const saveEditData=()=>{
     else
     {
     alert("You have entered an invalid email address!");
-    document.form1.text1.focus();
+    
 
     }
 
@@ -138,7 +138,7 @@ const saveEditData=()=>{
    else
    {
    alert("You have entered an invalid phone");
-   document.form1.text1.focus();
+   
 
    }
 

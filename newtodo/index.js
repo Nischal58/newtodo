@@ -40,46 +40,39 @@ const addToArray=()=>{
 
     ];
     const id = tasklist[tasklist.length-1].id+1;
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+   var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/
+
+
     if([username,email].includes('')){
         alert('Please fill both boxes');
-
-    }else{
-        tasklist.push({
-            id,username,email,phone
-        });
         
 
-        document.querySelector('#addUsername').value = '';
-        document.querySelector('#addEmail').value = '';
-        document.querySelector('#addphone').value = '';
-
+    }
+    else if(!email.match(mailformat))
+    {
+        alert('Invalid Email');
         
     }
 
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(email.match(mailformat))
-    {
-  
-    }
-    else
-    {
-    alert("You have entered an invalid email address!");
-
-
-    }
-
-   var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/
-   if(phone.match(phoneformat)){
-
-    displayTask();
-   }
-   else
-   {
-   alert("You have entered an invalid phone");
+   else if(!phone.match(phoneformat)){
+         alert('Invalid Phone');
 
 
    }
+   else{
+    tasklist.push({
+        id,username,email,phone
+    });
     
+
+    document.querySelector('#addUsername').value = '';
+    document.querySelector('#addEmail').value = '';
+    document.querySelector('#addphone').value = '';
+
+    
+}
+   displayTask(); 
 
  
 }
@@ -113,34 +106,23 @@ const saveEditData=()=>{
     document.querySelector('#editEmail').value,
     document.querySelector('#editphone').value,
   ];
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/;
     if([username,email].includes('')){
         alert('Please fill both boxes');
 
     }
-
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(email.match(mailformat))
+    else if(!email.match(mailformat))
     {
-   
-    }
-    else
-    {
-    alert("You have entered an invalid email address!");
-    
-
+        alert('Invalid Email');
+        
     }
 
-   var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/
-   if(phone.match(phoneformat)){
+   else if(!phone.match(phoneformat)){
+    alert('Invalid Phone');
 
 
-   }
-   else
-   {
-   alert("You have entered an invalid phone");
-   
-
-   }
+}
 
     
 

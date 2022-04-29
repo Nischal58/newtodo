@@ -41,7 +41,7 @@ const addToArray=()=>{
     ];
     const id = tasklist[tasklist.length-1].id+1;
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-   var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/
+    var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/
 
 
     if([username,email].includes('')){
@@ -107,7 +107,7 @@ const saveEditData=()=>{
     document.querySelector('#editphone').value,
   ];
   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/;
+  var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/
     if([username,email].includes('')){
         alert('Please fill both boxes');
 
@@ -124,18 +124,14 @@ const saveEditData=()=>{
 
 }
 
-    
-
-
+else{
   const arrIndex = tasklist.findIndex(v=>v.id==id);
 
   tasklist[arrIndex].username = username;
   tasklist[arrIndex].email = email;
   tasklist[arrIndex].phone = phone;
-
-
-  displayTask();
-
+ displayTask();
+}
 
 }
 

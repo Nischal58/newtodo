@@ -17,6 +17,11 @@
     </div>
   </nav>
     <section>
+        <div class="input-group input-group-sm mb-3">
+            <label>Enter a id:</label>
+            <input type="text" disabled="true"
+            " name="" id="editID">
+        </div>
     <div class="input-group input-group-sm mb-3">
         <label>Enter a Username</label>
         <input type="text" id="addUsername"/>
@@ -34,40 +39,12 @@
     </div>
     <div class="button-area ">
         <button class="btn btn-info" onclick="addToArray()">Add task</button>
-    </div>
+        <button class="btn btn-info" onclick="saveEditData()">Save task</button>
 
- 
-    
+    </div>
 
      
 </div>
-
-<div class="form-area ">
-    <h4>Edit Form </h4>
-    <div class="input-group input-group-sm mb-3">
-        <label>Enter a id:</label>
-        <input type="text" disabled="true"
-        " name="" id="editID">
-    </div>
-    <div class="input-group input-group-sm mb-3">
-        <label>Enter a Username:</label>
-        <input type="text" name="" id="editUsername">
-    </div>
-
-    <div class="input-group input-group-sm mb-3">
-        <label>Enter a email</label>
-        <input type="text" name="" id="editEmail">
-
-    </div>
-    <div class="input-group input-group-sm mb-3">
-        <label>Enter a phone</label>
-        <input type="text" name="" id="editphone">
-
-    </div>
-    <div class="button-area">
-        <button class="btn btn-info" onclick="saveEditData()" >Save Task</button>
-    </div>
-
     <div class="task-content" id="tasklist">
 
     </div>

@@ -5,8 +5,6 @@ let tasklist = [
         email: 'neeschal@gmail.com',
         phone: '9868136666'
     }
-
-
 ];
 
 const displayTask = () => {
@@ -14,11 +12,9 @@ const displayTask = () => {
     tasklist.forEach((val, index) => {
         document.querySelector('#tasklist').innerHTML += `
         <div class = "task-card">
-        <div class = "task-title">${val.username}</div>
-        <div class = "task-description">${val.email}
-        </div>
-        <div class = "task-description">${val.phone}
-        </div>
+        <input type="text" value="${val.username}" readonly/><br>
+        <input type="text" value="${val.email}" readonly/><br>
+        <input type="text" value="${val.phone}" readonly/>
         <div class = "button-area">
         <button class="btn btn-secondary"  onClick="getEditData(${index})">Edit Task</button>
         <button class="btn btn-info"
@@ -55,25 +51,18 @@ const addToArray = () => {
 const validation = (id, username, email, phone, mailformat, phoneformat) => {
     if ([username, email].includes('')) {
         alert('Please fill both boxes');
-
-
     }
     else if (!email.match(mailformat)) {
         alert('Invalid Email');
 
     }
-
     else if (!phone.match(phoneformat)) {
         alert('Invalid Phone');
-
-
     }
     else {
         tasklist.push({
             id, username, email, phone
         });
-
-
         document.querySelector('#addUsername').value = '';
         document.querySelector('#editID').value = '';
         document.querySelector('#addEmail').value = '';
@@ -88,8 +77,6 @@ const deleteTask = id => {
     console.log(tasklist);
     displayTask();
 }
-
-
 
 const getEditData = (i) => {
     document.querySelector('#editID').value = tasklist[i].id;
@@ -130,6 +117,5 @@ const saveEditData = () => {
 
 
     displayTask();
-
 
 }

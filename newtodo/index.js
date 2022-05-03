@@ -21,14 +21,20 @@ const displayTask = () => {
         onClick="deleteTask(${val.id})">Clear Task</button>
         </div>
         </div>
-
-        
         `;
     });
 }
 
-
 displayTask();
+
+//clear  textfield datas
+const removevalues=()=>{
+    document.querySelector('#addUsername').value = '';
+    document.querySelector('#editID').value = '';
+    document.querySelector('#addEmail').value = '';
+    document.querySelector('#addphone').value = '';
+    }
+
 
 
 const addToArray = () => {
@@ -39,36 +45,40 @@ const addToArray = () => {
 
     ];
     const id = tasklist[tasklist.length - 1].id + 1;
+    
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/
 
     //Calling validation from a function
-    validation(id, username, email, phone, mailformat, phoneformat);
-    displayTask();
+    let confirm =validation(id, username, email, phone, mailformat, phoneformat);
 
+    //validate and push
+    if(confirm == true){
+     tasklist.push({
+        id, username, email, phone
+    });
+    removevalues();
+displayTask();
+    }
 }
 //Created the validation function
 const validation = (id, username, email, phone, mailformat, phoneformat) => {
     if ([username, email].includes('')) {
         alert('Please fill both boxes');
+        return false;
     }
     else if (!email.match(mailformat)) {
         alert('Invalid Email');
+        return false;
 
     }
     else if (!phone.match(phoneformat)) {
         alert('Invalid Phone');
-    }
-    else {
-        tasklist.push({
-            id, username, email, phone
-        });
-        document.querySelector('#addUsername').value = '';
-        document.querySelector('#editID').value = '';
-        document.querySelector('#addEmail').value = '';
-        document.querySelector('#addphone').value = '';
+        return false;
 
     }
+    return true;
+  
 }
 
 const deleteTask = id => {
@@ -86,36 +96,35 @@ const getEditData = (i) => {
 }
 
 const saveEditData = () => {
-    let [id, username, email, phone] = [
+    const [id, username, email, phone] = [
         document.querySelector('#editID').value,
         document.querySelector('#addUsername').value,
         document.querySelector('#addEmail').value,
         document.querySelector('#addphone').value,
     ];
+
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/;
-    if ([username, email].includes('')) {
-        alert('Please fill both boxes');
+    var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/
 
-    }
-    else if (!email.match(mailformat)) {
-        alert('Invalid Email');
-
-    }
-
-    else if (!phone.match(phoneformat)) {
-        alert('Invalid Phone');
-
-
-    }
+    let confirm = validation(id, username, email, phone, mailformat, phoneformat);
+    if(confirm ==true){
 
     const arrIndex = tasklist.findIndex(v => v.id == id);
 
     tasklist[arrIndex].username = username;
     tasklist[arrIndex].email = email;
     tasklist[arrIndex].phone = phone;
+    removevalues();
 
+    }
 
     displayTask();
 
+    
+
 }
+
+
+
+
+

@@ -16,8 +16,8 @@ const displayTask = () => {
         <input type="text" value="${val.email}" readonly/><br>
         <input type="text" value="${val.phone}" readonly/>
         <div class = "button-area">
-        <button class="btn btn-secondary"  onClick="getEditData(${index})">Edit Task</button>
-        <button class="btn btn-info"
+        <button class="btn btn-secondary mt-3"  onClick="getEditData(${index})">Edit Task</button>
+        <button class="btn btn-info mt-3"
         onClick="deleteTask(${val.id})">Clear Task</button>
         </div>
         </div>
@@ -27,12 +27,22 @@ const displayTask = () => {
 
 displayTask();
 
+
+//get Values
+const getValues=()=>{
+
+    username= document.querySelector('#addUsername').value,
+    email=document.querySelector('#addEmail').value,
+    phone =document.querySelector('#addPhone').value
+
+}
+
 //clear  textfield datas
-const removevalues=()=>{
+const removeValues=()=>{
     document.querySelector('#addUsername').value = '';
     document.querySelector('#editID').value = '';
     document.querySelector('#addEmail').value = '';
-    document.querySelector('#addphone').value = '';
+    document.querySelector('#addPhone').value = '';
     }
 
 
@@ -41,7 +51,7 @@ const addToArray = () => {
     const [username, email, phone] = [
         document.querySelector('#addUsername').value,
         document.querySelector('#addEmail').value,
-        document.querySelector('#addphone').value,
+        document.querySelector('#addPhone').value,
 
     ];
     const id = tasklist[tasklist.length - 1].id + 1;
@@ -57,12 +67,14 @@ const addToArray = () => {
      tasklist.push({
         id, username, email, phone
     });
-    removevalues();
-displayTask();
+
+    removeValues();
+     displayTask();
     }
 }
 //Created the validation function
 const validation = (id, username, email, phone, mailformat, phoneformat) => {
+
     if ([username, email].includes('')) {
         alert('Please fill both boxes');
         return false;
@@ -70,12 +82,10 @@ const validation = (id, username, email, phone, mailformat, phoneformat) => {
     else if (!email.match(mailformat)) {
         alert('Invalid Email');
         return false;
-
     }
     else if (!phone.match(phoneformat)) {
         alert('Invalid Phone');
         return false;
-
     }
     return true;
   
@@ -92,29 +102,26 @@ const getEditData = (i) => {
     document.querySelector('#editID').value = tasklist[i].id;
     document.querySelector('#addUsername').value = tasklist[i].username;
     document.querySelector('#addEmail').value = tasklist[i].email;
-    document.querySelector('#addphone').value = tasklist[i].phone;
+    document.querySelector('#addPhone').value = tasklist[i].phone;
 }
 
 const saveEditData = () => {
-    const [id, username, email, phone] = [
-        document.querySelector('#editID').value,
-        document.querySelector('#addUsername').value,
-        document.querySelector('#addEmail').value,
-        document.querySelector('#addphone').value,
-    ];
+
+    getValues();
+    id =   document.querySelector('#editID').value;
+
 
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     var phoneformat = /(?:\+977[- ])?\d{2}-?\d{7,8}/
 
     let confirm = validation(id, username, email, phone, mailformat, phoneformat);
+    
     if(confirm ==true){
-
     const arrIndex = tasklist.findIndex(v => v.id == id);
-
     tasklist[arrIndex].username = username;
     tasklist[arrIndex].email = email;
     tasklist[arrIndex].phone = phone;
-    removevalues();
+    removeValues();
 
     }
 
@@ -123,8 +130,3 @@ const saveEditData = () => {
     
 
 }
-
-
-
-
-

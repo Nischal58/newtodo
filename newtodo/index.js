@@ -28,7 +28,7 @@ const displayTask = () => {
 displayTask();
 
 
-//get Values
+//get Values from function
 const getValues=()=>{
 
     username= document.querySelector('#addUsername').value,
